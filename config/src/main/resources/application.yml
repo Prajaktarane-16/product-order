@@ -1,0 +1,35 @@
+server:
+  port: 5052
+
+spring:
+  application:
+    name: CONFIG-SERVICE
+  # ***********************comment this when you are doing config using github*********************#
+ # profiles:
+ #   active: native
+  cloud:
+    config:
+      server:
+        #this is for local yml access
+    #    native:
+    #      searchLocations: classpath:config/
+        git:
+          uri: https://github.com/Prajaktarane-16/microservices
+          clone-on-start: true
+           # its optional if your git repo is private
+    #       username: prajakta
+    #       password: fsdngdfkgfkg
+  # **********************************************************************************************#
+
+# this configuration is for config microservices rather then other microservice
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      #for localhost
+      defaultZone: http://localhost:8761/eureka/
+      #for docker
+     # defaultZone: http://registry-container:8761/eureka/
